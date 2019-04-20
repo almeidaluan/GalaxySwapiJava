@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: starwars
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: starwars-database
+
+  resources:
+    add-mappings: true
+
+planetswapi:
+  url:
+    planets: https://swapi.co/api/planets
+
+
+management.endpoints.web.exposure.include: "*"
+
+
+---
