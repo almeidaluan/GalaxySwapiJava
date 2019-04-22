@@ -1,7 +1,7 @@
 package com.br.starwars.service;
 
 import com.br.starwars.client.PlanetSwapiClient;
-import com.br.starwars.exception.GenericException;
+import com.br.starwars.exception.ObjectNotFoundException;
 import com.br.starwars.model.PlanetSwapi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ public class PlanetSwapiService {
         //pega o planeta do serviço
         PlanetSwapi.Result result= planetSwapiClient.getPlanet(name).getResults().stream()
                 .filter(f -> f.getName().equals(name)).findFirst()
-                .orElseThrow(() -> new GenericException(PLANET_NOT_FOUND));
+                .orElseThrow(() -> new ObjectNotFoundException(PLANET_NOT_FOUND));
         //pega a quantidade de filmes do planeta
         return result.getFilms().size();
     }

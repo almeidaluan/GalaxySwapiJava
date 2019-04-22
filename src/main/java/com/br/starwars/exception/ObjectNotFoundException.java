@@ -1,10 +1,10 @@
 package com.br.starwars.exception;
 
-public class GenericException extends RuntimeException {
+public class ObjectNotFoundException extends RuntimeException {
 
 	private static final long serialVersionUID = 4288895116839976448L;
 
-	public GenericException(String message){
+	public ObjectNotFoundException(String message){
         super(message);
     }
 

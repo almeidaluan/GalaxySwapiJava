@@ -18,6 +18,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 public class Planet {
 
+    @Id
+    private String id;
 
     @Indexed(unique = true)
     private String name;

@@ -1,0 +1,37 @@
+Configutation:
+  status: warn
+
+  Appenders:
+    Console:
+      name: CONSOLE
+      target: SYSTEM_OUT
+      PatternLayout:
+        Pattern: "[%t] %d{ISO8601} %-5p [%c{3}] [%t] %m%n"
+    RollingFile:
+    - name: APPLICATION
+      fileName: logs/propertieslogs.log
+      filePattern: "../logs/$${date:yyyy-MM}/my-app-%d{yyyy-MM-dd}-%i.log.gz"
+      PatternLayout:
+        Pattern: "[%t] %d{ISO8601} %-5p [%c{3}] [%t] %m%n"
+      policies:
+        TimeBasedTriggeringPolicy:
+          interval: 1
+          modulate: true
+
+  Loggers:
+    Root:
+      level: info
+      AppenderRef:
+      - ref: CONSOLE
+      - ref: APPLICATION
+    Logger:
+    - name: com.myco.myapp.Foo
+      level: info
+      AppenderRef:
+      - ref: CONSOLE
+      - ref: APPLICATION
+    - name: com.myco.myapp.Bar
+      level: debug
+      AppenderRef:
+      - ref: CONSOLE
+      - ref: APPLICATION
