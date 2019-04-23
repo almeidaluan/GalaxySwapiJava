@@ -1,0 +1,31 @@
+version: '3'
+services:
+  mongodb:
+    container_name: mongo-starwars
+    image: mongo
+    networks:
+      - dev-network
+    ports:
+      - "27017:27017"
+
+  app:
+    build:
+      #dockerfile: ./target/docker/Dockerfile
+      context: .
+    depends_on:
+      - "mongodb"
+    image: starwars-java
+    container_name: starwars-1
+    ports:
+      - "8080:8080"
+    links:
+      - mongodb
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb://mongodb/customer
+    networks:
+      - dev-network
+
+
+networks:
+  dev-network:
+    driver: bridge
